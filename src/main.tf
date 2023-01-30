@@ -4,7 +4,7 @@ resource "aws_vpc" "main" {
  cidr_block = "10.192.0.0/16"
  
  tags = {
-   Name = "Test VPC"
+   Name = "${var.name} - VPC"
  }
 }
 
@@ -15,7 +15,7 @@ resource "aws_subnet" "public_subnets" {
  availability_zone = data.aws_availability_zones.available.names[count.index]
  
  tags = {
-   Name = "Public Subnet (AZ${count.index + 1})"
+   Name = "${var.name} - Public Subnet (AZ${count.index + 1})"
  }
 }
  
@@ -26,7 +26,7 @@ resource "aws_subnet" "private_subnets" {
  availability_zone = data.aws_availability_zones.available.names[count.index]
  
  tags = {
-   Name = "Private Subnet (AZ${count.index + 1})"
+   Name = "${var.name} - Private Subnet (AZ${count.index + 1})"
  }
 }
 
@@ -34,7 +34,7 @@ resource "aws_internet_gateway" "gw" {
  vpc_id = aws_vpc.main.id
  
  tags = {
-   Name = "Project VPC IG"
+   Name = "${var.name} - Internet Gateway"
  }
 }
 
@@ -47,7 +47,7 @@ resource "aws_route_table" "public_route_table" {
  }
  
  tags = {
-   Name = "Public Route Table"
+   Name = "${var.name} - Public Route Table"
  }
 }
 

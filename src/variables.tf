@@ -1,3 +1,8 @@
+variable "name" {
+  type = string
+  default = "Test"
+}
+
 variable "public_subnet_cidrs" {
  type        = list(string)
  description = "Public Subnet CIDR values"
