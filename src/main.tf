@@ -1,23 +1,7 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.16"
-    }
-  }
-
-  required_version = ">= 1.2.0"
-}
-
-provider "aws" {
-  region  = "eu-west-2"
-}
-
-resource "aws_instance" "app_server" {
-  ami           = "ami-0a6aae90571909e92"
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = "ExampleAppServerInstance"
-  }
+resource "aws_vpc" "main" {
+ cidr_block = "10.192.0.0/16"
+ 
+ tags = {
+   Name = "Test VPC"
+ }
 }
